@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>caloriefree — India's First Zero-Calorie Konjac Fruit Jelly</title>
+    <meta name="description" content="Zero-calorie, Korean-style konjac fruit jelly pouch with desi flavors. Under 10 calories, 0 sugar, maximum bounce. By SSN Studio.">
+    <meta property="og:title" content="caloriefree — India's First Konjac Fruit Jelly">
+    <meta property="og:description" content="Korean bounce meets desi flavor. Under 10 calories per pouch. Launching soon.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ssnstudio.com">
+    <link rel="canonical" href="https://www.ssnstudio.com">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#0A0A0A',
+                        cream: '#FEFDF8',
+                        mango: '#FFB800',
+                        guava: '#FF4D4D',
+                        jamun: '#9B59B6',
+                        mint: '#00D48A',
+                        lt: '#F5F5F0',
+                        muted: '#9CA3AF',
+                        card: 'rgba(255,255,255,0.03)',
+                        cardHover: 'rgba(255,255,255,0.06)',
+                        border: 'rgba(255,255,255,0.06)',
+                        borderHover: 'rgba(255,255,255,0.12)',
+                    },
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        body: ['"DM Sans"', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background: #0A0A0A; color: #F5F5F0; font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+        /* ── Ambient Glow Layer ── */
+        .hero-ambient {
+            position: absolute; inset: 0; pointer-events: none; z-index: 0;
+            background:
+                radial-gradient(ellipse 600px 400px at 25% 20%, rgba(255,184,0,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 500px at 75% 55%, rgba(155,89,182,0.05) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 50% 85%, rgba(255,77,77,0.04) 0%, transparent 70%);
+            transition: background 1.2s ease;
+        }
+        .hero-ambient[data-flavor="0"] {
+            background:
+                radial-gradient(ellipse 600px 400px at 25% 20%, rgba(255,184,0,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 500px at 75% 55%, rgba(155,89,182,0.03) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 50% 85%, rgba(255,77,77,0.02) 0%, transparent 70%);
+        }
+        .hero-ambient[data-flavor="1"] {
+            background:
+                radial-gradient(ellipse 600px 400px at 25% 20%, rgba(255,184,0,0.03) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 500px at 65% 35%, rgba(255,77,77,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 50% 85%, rgba(155,89,182,0.02) 0%, transparent 70%);
+        }
+        .hero-ambient[data-flavor="2"] {
+            background:
+                radial-gradient(ellipse 600px 400px at 25% 20%, rgba(255,184,0,0.02) 0%, transparent 70%),
+                radial-gradient(ellipse 500px 500px at 75% 55%, rgba(155,89,182,0.1) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 40% 75%, rgba(255,77,77,0.03) 0%, transparent 70%);
+        }
+
+        /* ── Film Grain ── */
+        .grain::after {
+            content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-size: 200px;
+        }
+
+        /* ── Glow Dot ── */
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 8px currentColor, 0 0 16px currentColor; }
+            50% { opacity: 0.5; box-shadow: 0 0 4px currentColor; }
+        }
+        .glow-dot { animation: glow-pulse 2s ease-in-out infinite; }
+
+        /* ── Floating ── */
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .float-anim { animation: float-gentle 4s ease-in-out infinite; }
+
+        /* ── Entrance Animations ── */
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+        .delay-7 { animation-delay: 0.7s; }
+
+        /* ── Scroll-reveal ── */
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Flavor accent transitions ── */
+        .flavor-accent { transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .flavor-border { transition: border-color 0.4s ease, background 0.4s ease; }
+
+        /* ── Card interactions ── */
+        .stat-card {
+            background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px); border-radius: 16px;
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .stat-card:hover {
+            background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12);
+            transform: translateY(-3px);
+        }
+
+        .flavor-card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .flavor-card:hover { background: rgba(255,255,255,0.04); transform: translateY(-3px) scale(1.01); }
+        .flavor-card.active { background: rgba(255,255,255,0.05); transform: scale(1.02); }
+
+        .tech-row {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: background 0.3s ease;
+        }
+        .tech-row:hover { background: rgba(255,255,255,0.02); }
+
+        /* ── Pill ── */
+        .pill {
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            cursor: pointer; user-select: none;
+        }
+        .pill:hover { transform: scale(1.05); }
+
+        /* ── Nav glassmorphism ── */
+        .nav-glass {
+            background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(24px) saturate(1.4);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: all 0.4s ease;
+        }
+        .nav-glass.scrolled {
+            background: rgba(10, 10, 10, 0.88); backdrop-filter: blur(32px) saturate(1.6);
+            border-bottom-color: rgba(255,255,255,0.08);
+        }
+
+        /* ── Timeline ── */
+        .timeline-dot {
+            transition: all 0.3s ease;
+        }
+        .timeline-line {
+            position: absolute; left: 23px; top: 48px; bottom: 0; width: 1px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);
+        }
+
+        /* ── Section tag ── */
+        .section-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 16px; border-radius: 100px;
+            font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="grain">
+
+    <!-- ══════════════ NAV ══════════════ -->
+    <nav id="mainNav" class="nav-glass fixed top-0 left-0 right-0 z-50 px-5 sm:px-8 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-9 h-9 rounded-full flex items-center justify-center text-sm shrink-0 float-anim"
+                     style="background: linear-gradient(135deg, #FFB800, #FF4D4D, #9B59B6);">
+                    <span style="filter: saturate(0) brightness(10);">⬡</span>
+                </div>
+                <span class="font-display font-800 text-xl tracking-tight">
+                    <span class="text-cream">calorie</span><span class="text-mango">free</span>
+                </span>
+            </a>
+            <!-- Badge -->
+            <div class="section-tag" style="background: rgba(0,212,138,0.1); color: #00D48A; border: 1px solid rgba(0,212,138,0.25);">
+                <span class="glow-dot w-2 h-2 rounded-full inline-block" style="background: #00D48A; color: #00D48A;"></span>
+                PRE-LAUNCH
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ══════════════ HERO ══════════════ -->
+    <section id="hero" class="relative min-h-screen flex flex-col justify-center pt-28 pb-20 px-5 sm:px-8">
+        <div class="hero-ambient" id="heroAmbient" data-flavor="0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto w-full">
+            <!-- Tag -->
+            <div class="fade-up delay-1">
+                <span class="section-tag mb-6" style="background: rgba(255,184,0,0.08); color: #FFB800; border: 1px solid rgba(255,184,0,0.2);">
+                    NEW CATEGORY — INDIA'S FIRST
+                </span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-display font-800 leading-[1.02] mb-6 max-w-3xl fade-up delay-2"
+                style="font-size: clamp(2.5rem, 7.5vw, 4.5rem);">
+                Zero-Calorie
+                <span id="heroAccent" class="flavor-accent" style="color: #FFB800;">Konjac</span>
+                Fruit Jelly
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-muted text-lg sm:text-xl max-w-xl leading-relaxed mb-10 fade-up delay-3">
+                Korean-style bouncy jelly pouch meets desi flavors.<br class="hidden sm:block">
+                Under 10 calories. Over 10,000 reasons to squeeze one open.
+            </p>
+
+            <!-- Flavor Pills -->
+            <div id="flavorPills" class="flex flex-wrap gap-3 mb-14 fade-up delay-4">
+                <!-- JS injects pills -->
+            </div>
+
+            <!-- Stat Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 fade-up delay-5">
+                <div class="stat-card p-5 sm:p-6">
+                    <div class="font-display font-800 text-2xl sm:text-3xl text-cream">&lt;10<span class="text-sm font-body font-400 text-muted ml-1">kcal</span></div>
+                    <div class="text-xs text-muted mt-1 tracking-wide">Per 150ml pouch</div>
+                </div>
+                <div class="stat-card p-5 sm:p-6">
+                    <div class="font-display font-800 text-2xl sm:text-3xl text-cream">0<span class="text-sm font-body font-400 text-muted ml-1">sugar</span></div>
+                    <div class="text-xs text-muted mt-1 tracking-wide">Zero added sugar</div>
+                </div>
+                <div class="stat-card p-5 sm:p-6">
+                    <div class="font-display font-800 text-2xl sm:text-3xl text-cream">0.9g<span class="text-sm font-body font-400 text-muted ml-1">fiber</span></div>
+                    <div class="text-xs text-muted mt-1 tracking-wide">Soluble dietary fiber</div>
+                </div>
+                <div class="stat-card p-5 sm:p-6">
+                    <div class="font-display font-800 text-2xl sm:text-3xl text-cream">150<span class="text-sm font-body font-400 text-muted ml-1">ml</span></div>
+                    <div class="text-xs text-muted mt-1 tracking-wide">Perfect pouch size</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════ PRODUCT / FLAVORS ══════════════ -->
+    <section id="product" class="px-5 sm:px-8 py-20 sm:py-28">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <span class="section-tag mb-6" style="background: rgba(255,77,77,0.08); color: #FF4D4D; border: 1px solid rgba(255,77,77,0.18);">
+                    WHAT WE'RE BUILDING
+                </span>
+            </div>
+            <h2 class="font-display font-800 text-3xl sm:text-4xl leading-tight mb-4 reveal">
+                Not a drink. Not a candy.<br>
+                <span class="text-mango">A new category.</span>
+            </h2>
+            <p class="text-muted text-base sm:text-lg max-w-xl leading-relaxed mb-12 reveal">
+                Konjac jelly pouches are a ₹15,000 Cr+ category in Korea and Japan. In India, they don't exist yet. We're launching with three unapologetically desi flavors that no Korean brand would ever make.
+            </p>
+
+            <!-- Flavor Cards -->
+            <div id="flavorCards" class="grid sm:grid-cols-3 gap-4">
+                <!-- JS injects cards -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════ SCIENCE / TECH SPECS ══════════════ -->
+    <section id="science" class="px-5 sm:px-8 py-20 sm:py-28">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <span class="section-tag mb-6" style="background: rgba(0,212,138,0.08); color: #00D48A; border: 1px solid rgba(0,212,138,0.18);">
+                    THE SCIENCE
+                </span>
+            </div>
+            <h2 class="font-display font-800 text-3xl sm:text-4xl leading-tight mb-10 reveal">
+                Engineered texture.<br>
+                <span class="text-mint">Not an accident.</span>
+            </h2>
+
+            <div class="reveal" id="techGrid">
+                <!-- Row 1 -->
+                <div class="tech-row py-5 px-4 sm:px-6 rounded-t-xl">
+                    <div class="text-xs text-muted uppercase tracking-widest mb-1.5 font-medium">Primary Matrix</div>
+                    <div class="text-sm sm:text-base font-medium text-lt">Konjac Glucomannan (KGM) — 200 mesh, ≥30,000 mPa·s</div>
+                    <div class="text-xs text-muted mt-1">Plant-based fiber from Amorphophallus konjac root</div>
+                </div>
+                <!-- Row 2 -->
+                <div class="tech-row py-5 px-4 sm:px-6">
+                    <div class="text-xs text-muted uppercase tracking-widest mb-1.5 font-medium">Co-Gel System</div>
+                    <div class="text-sm sm:text-base font-medium text-lt">κ-Carrageenan + Xanthan Gum synergistic network</div>
+                    <div class="text-xs text-muted mt-1">Thermoreversible — bouncy at room temp, pourable when hot</div>
+                </div>
+                <!-- Row 3 -->
+                <div class="tech-row py-5 px-4 sm:px-6">
+                    <div class="text-xs text-muted uppercase tracking-widest mb-1.5 font-medium">Sweetener Stack</div>
+                    <div class="text-sm sm:text-base font-medium text-lt">Allulose (body) + Erythritol (speed) + Stevia Reb A 97% (peak)</div>
+                    <div class="text-xs text-muted mt-1">Three-layer sweetness curve mimicking sucrose temporal profile</div>
+                </div>
+                <!-- Row 4 -->
+                <div class="tech-row py-5 px-4 sm:px-6">
+                    <div class="text-xs text-muted uppercase tracking-widest mb-1.5 font-medium">Caloric Load</div>
+                    <div class="text-sm sm:text-base font-medium text-lt">≤9.5 kcal per 150ml pouch</div>
+                    <div class="text-xs text-muted mt-1">FSSAI compliant — classifiable as near-zero calorie</div>
+                </div>
+                <!-- Row 5 -->
+                <div class="tech-row py-5 px-4 sm:px-6">
+                    <div class="text-xs text-muted uppercase tracking-widest mb-1.5 font-medium">Satiety Mechanism</div>
+                    <div class="text-sm sm:text-base font-medium text-lt">KGM swells 50× in stomach, slows gastric emptying</div>
+                    <div class="text-xs text-muted mt-1">Clinically studied soluble fiber — functional, not marketing</div>
+                </div>
+                <!-- Row 6 -->
+                <div class="tech-row py-5 px-4 sm:px-6 rounded-b-xl border-b-0">
+                    <div class="text-xs text-muted uppercase tracking-widest mb-1.5 font-medium">Process</div>
+                    <div class="text-sm sm:text-base font-medium text-lt">85°C pasteurization → hot-fill ≥80°C → two-stage cooling</div>
+                    <div class="text-xs text-muted mt-1">Full HACCP-compliant CCP chain mapped</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════ MARKET ══════════════ -->
+    <section id="market" class="px-5 sm:px-8 py-20 sm:py-28">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <span class="section-tag mb-6" style="background: rgba(155,89,182,0.08); color: #C39BD3; border: 1px solid rgba(155,89,182,0.2);">
+                    MARKET OPPORTUNITY
+                </span>
+            </div>
+            <h2 class="font-display font-800 text-3xl sm:text-4xl leading-tight mb-10 reveal">
+                The gap is <span class="text-jamun">wide open.</span>
+            </h2>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 reveal">
+                <div class="stat-card p-5 sm:p-7">
+                    <div class="font-display font-800 text-xl sm:text-2xl text-cream mb-2">₹15,000 Cr+</div>
+                    <div class="text-xs text-muted leading-relaxed">Konjac jelly market in Korea + Japan + China</div>
+                </div>
+                <div class="stat-card p-5 sm:p-7">
+                    <div class="font-display font-800 text-xl sm:text-2xl text-cream mb-2">0</div>
+                    <div class="text-xs text-muted leading-relaxed">Konjac jelly brands currently in India</div>
+                </div>
+                <div class="stat-card p-5 sm:p-7">
+                    <div class="font-display font-800 text-xl sm:text-2xl text-cream mb-2">8.5% CAGR</div>
+                    <div class="text-xs text-muted leading-relaxed">India BFY snack segment growth (2024–2030)</div>
+                </div>
+                <div class="stat-card p-5 sm:p-7">
+                    <div class="font-display font-800 text-xl sm:text-2xl text-cream mb-2">₹2,000 Cr+</div>
+                    <div class="text-xs text-muted leading-relaxed">India functional/BFY snack market (2025)</div>
+                </div>
+                <div class="stat-card p-5 sm:p-7">
+                    <div class="font-display font-800 text-xl sm:text-2xl text-cream mb-2">18–35</div>
+                    <div class="text-xs text-muted leading-relaxed">Urban, health-conscious, Instagram-native target</div>
+                </div>
+                <div class="stat-card p-5 sm:p-7">
+                    <div class="font-display font-800 text-xl sm:text-2xl text-cream mb-2">D2C First</div>
+                    <div class="text-xs text-muted leading-relaxed">Blinkit, Zepto, Instamart + Instagram launch</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════ TIMELINE ══════════════ -->
+    <section id="timeline" class="px-5 sm:px-8 py-20 sm:py-28">
+        <div class="max-w-5xl mx-auto">
+            <div class="reveal">
+                <span class="section-tag mb-6" style="background: rgba(255,184,0,0.08); color: #FFB800; border: 1px solid rgba(255,184,0,0.2);">
+                    WHERE WE ARE
+                </span>
+            </div>
+            <h2 class="font-display font-800 text-3xl sm:text-4xl leading-tight mb-12 reveal">
+                Current <span class="text-mango">stage.</span>
+            </h2>
+
+            <div class="space-y-0 reveal">
+                <!-- Step 1 ✓ -->
+                <div class="flex gap-5 pb-8 relative">
+                    <div class="timeline-line"></div>
+                    <div class="w-12 h-12 rounded-full shrink-0 flex items-center justify-center text-sm font-bold border-2 z-10"
+                         style="background: rgba(0,212,138,0.1); border-color: rgba(0,212,138,0.3); color: #00D48A;">
+                        ✓
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-lt mb-1">Formulation Locked</h3>
+                        <p class="text-sm text-muted leading-relaxed max-w-lg">Complete hydrocolloid, sweetener, and acidulant matrix validated at bench scale (2kg). Full SOP with 5 CCPs documented.</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 ✓ -->
+                <div class="flex gap-5 pb-8 relative">
+                    <div class="timeline-line"></div>
+                    <div class="w-12 h-12 rounded-full shrink-0 flex items-center justify-center text-sm font-bold border-2 z-10"
+                         style="background: rgba(0,212,138,0.1); border-color: rgba(0,212,138,0.3); color: #00D48A;">
+                        ✓
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-lt mb-1">Supplier Network Built</h3>
+                        <p class="text-sm text-muted leading-relaxed max-w-lg">All ingredients sourced from verified Indian B2B suppliers — SARDA Bio Polymers, Marine Hydrocolloids, 1-2-Taste India.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 ACTIVE -->
+                <div class="flex gap-5 pb-8 relative">
+                    <div class="timeline-line"></div>
+                    <div class="w-12 h-12 rounded-full shrink-0 flex items-center justify-center text-sm font-bold border-2 z-10"
+                         style="background: rgba(255,184,0,0.12); border-color: rgba(255,184,0,0.4); color: #FFB800;">
+                        03
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold mb-1" style="color: #FFB800;">
+                            Pilot Batch (100kg)
+                            <span class="text-xs font-normal ml-2 tracking-wider" style="color: #FFB800;">← WE ARE HERE</span>
+                        </h3>
+                        <p class="text-sm text-muted leading-relaxed max-w-lg">Engaging contract R&D partner for 660-pouch pilot production across 3 flavors. Shelf-life study initiation.</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="flex gap-5 pb-8 relative opacity-40">
+                    <div class="timeline-line"></div>
+                    <div class="w-12 h-12 rounded-full shrink-0 flex items-center justify-center text-sm font-bold border-2 z-10"
+                         style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.08); color: #9CA3AF;">
+                        04
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-lt mb-1">Consumer Validation</h3>
+                        <p class="text-sm text-muted leading-relaxed max-w-lg">500 pouches distributed through gyms, health stores, and Instagram community for taste and price testing.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="flex gap-5 relative opacity-40">
+                    <div class="w-12 h-12 rounded-full shrink-0 flex items-center justify-center text-sm font-bold border-2 z-10"
+                         style="background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.08); color: #9CA3AF;">
+                        05
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-lt mb-1">Scale & Launch</h3>
+                        <p class="text-sm text-muted leading-relaxed max-w-lg">1,000kg production run → D2C launch via Instagram + quick commerce platforms (Blinkit, Zepto, Instamart).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer class="px-5 sm:px-8 pt-20 pb-12 border-t" style="border-color: rgba(255,255,255,0.04);">
+        <div class="max-w-5xl mx-auto text-center">
+            <!-- Logo mark -->
+            <div class="w-14 h-14 rounded-full mx-auto mb-6 flex items-center justify-center text-2xl float-anim"
+                 style="background: linear-gradient(135deg, #FFB800, #FF4D4D, #9B59B6);">
+                <span style="filter: saturate(0) brightness(10);">⬡</span>
+            </div>
+
+            <div class="font-display font-800 text-2xl tracking-tight mb-2">
+                <span class="text-cream">calorie</span><span class="text-mango">free</span>
+            </div>
+
+            <p class="text-sm text-muted mb-1">
+                A functional food brand by <a href="https://www.ssnstudio.com" class="text-lt hover:text-mango transition-colors font-medium">SSN Studio</a>
+            </p>
+            <p class="text-sm text-muted mb-8">
+                India's next iconic snack format.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-muted">
+                <a href="https://www.ssnstudio.com" class="hover:text-lt transition-colors">ssnstudio.com</a>
+                <span class="hidden sm:inline opacity-30">·</span>
+                <a href="mailto:krishna@ssnstudio.com" class="hover:text-lt transition-colors">krishna@ssnstudio.com</a>
+            </div>
+
+            <div class="mt-10 text-xs text-muted opacity-40">
+                © 2026 SSN Studio. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ══════════════ JAVASCRIPT ENGINE ══════════════ -->
+    <script>
+    (function () {
+        'use strict';
+
+        /* ── Flavor data ── */
+        const flavors = [
+            { name: 'Kacha Mango', emoji: '🥭', color: '#FFB800', tagline: 'Raw. Tart. Addictive.', desc: 'That first bite of a street-side raw mango with a hit of citric tang — captured in a bouncy, squeezable gel.' },
+            { name: 'Guava-Chili',  emoji: '🌶️', color: '#FF4D4D', tagline: 'Sweet Heat. Zero Guilt.', desc: 'Pink guava sweetness with a slow-burn chili finish from micro-encapsulated capsaicin. The warmth unfolds as you chew.' },
+            { name: 'Jamun',        emoji: '🫐', color: '#9B59B6', tagline: 'Nostalgic. Deep. Purple.',   desc: 'The forgotten monsoon fruit — tannic, wine-dark, and deeply Indian. A flavor no other brand in the world is doing.' }
+        ];
+
+        let activeFlavor = 0;
+        let autoTimer = null;
+
+        /* ── DOM refs ── */
+        const heroAccent    = document.getElementById('heroAccent');
+        const heroAmbient   = document.getElementById('heroAmbient');
+        const pillContainer = document.getElementById('flavorPills');
+        const cardContainer = document.getElementById('flavorCards');
+
+        /* ── Build pills ── */
+        function renderPills() {
+            pillContainer.innerHTML = '';
+            flavors.forEach((f, i) => {
+                const pill = document.createElement('button');
+                pill.className = 'pill inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium flavor-border';
+                pill.setAttribute('aria-label', 'Select flavor: ' + f.name);
+                const isActive = i === activeFlavor;
+                pill.style.background  = isActive ? f.color + '18' : 'rgba(255,255,255,0.025)';
+                pill.style.borderColor = isActive ? f.color + '44' : 'rgba(255,255,255,0.06)';
+                pill.style.color       = isActive ? f.color : '#9CA3AF';
+                pill.innerHTML = `<span style="font-size:16px;">${f.emoji}</span> ${f.name}`;
+                pill.addEventListener('click', () => manualSelect(i));
+                pillContainer.appendChild(pill);
+            });
+        }
+
+        /* ── Build flavor cards ── */
+        function renderCards() {
+            cardContainer.innerHTML = '';
+            flavors.forEach((f, i) => {
+                const isActive = i === activeFlavor;
+                const card = document.createElement('div');
+                card.className = 'flavor-card p-7 sm:p-8' + (isActive ? ' active' : '');
+                card.style.borderColor = isActive ? f.color + '30' : '';
+                card.setAttribute('role', 'button');
+                card.setAttribute('tabindex', '0');
+                card.innerHTML = `
+                    <div class="text-5xl mb-5">${f.emoji}</div>
+                    <h3 class="font-display font-700 text-xl mb-1" style="color: ${f.color};">${f.name}</h3>
+                    <p class="text-xs font-medium text-muted uppercase tracking-widest mb-3">${f.tagline}</p>
+                    <p class="text-sm text-muted leading-relaxed">${f.desc}</p>
+                `;
+                card.addEventListener('click', () => manualSelect(i));
+                cardContainer.appendChild(card);
+            });
+        }
+
+        /* ── Update accent / ambient ── */
+        function updateAccent() {
+            const f = flavors[activeFlavor];
+            heroAccent.style.color = f.color;
+            heroAmbient.setAttribute('data-flavor', String(activeFlavor));
+        }
+
+        /* ── Unified state update ── */
+        function setFlavor(idx) {
+            activeFlavor = idx;
+            renderPills();
+            renderCards();
+            updateAccent();
+        }
+
+        /* ── Manual selection → stops auto ── */
+        function manualSelect(idx) {
+            if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+            setFlavor(idx);
+        }
+
+        /* ── Auto-rotation ── */
+        function startAuto() {
+            autoTimer = setInterval(() => {
+                activeFlavor = (activeFlavor + 1) % flavors.length;
+                setFlavor(activeFlavor);
+            }, 3000);
+        }
+
+        /* ── Nav scroll effect ── */
+        const nav = document.getElementById('mainNav');
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    nav.classList.toggle('scrolled', window.scrollY > 40);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        /* ── Scroll-reveal observer ── */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        /* ── Init ── */
+        setFlavor(0);
+        startAuto();
+
+    })();
+    </script>
+
+</body>
+</html>
